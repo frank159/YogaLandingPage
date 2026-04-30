@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import * as S from "./InfoPageStyled";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { motion, useInView } from "framer-motion";
 
 import "swiper/css";
@@ -45,7 +45,7 @@ export default function InfoPage() {
       opacity: 1,
       x: 0,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.8, ease: "easeOut" as const },
     },
   };
 
@@ -128,19 +128,13 @@ export default function InfoPage() {
                 animate={isInView ? { opacity: 1 } : {}}
                 transition={{ duration: 1 }}
               >
-                <S.CustomArrow
-                  ref={(node) => setPrevInst(node)}
-                  className="prev"
-                >
-                  <img src="/Imgs/seta2.png" alt="Anterior" />
-                </S.CustomArrow>
-
                 <Swiper
                   slidesPerView={1}
                   centeredSlides={true}
-                  loop={true}
+                  loop={false}
                   navigation={{ prevEl: prevInst, nextEl: nextInst }}
-                  modules={[Navigation]}
+                  pagination={{ clickable: true }}
+                  modules={[Navigation, Pagination]}
                   style={{ width: "100%" }}
                 >
                   {instructors.map((tutor) => (
@@ -164,13 +158,6 @@ export default function InfoPage() {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-
-                <S.CustomArrow
-                  ref={(node) => setNextInst(node)}
-                  className="next"
-                >
-                  <img src="/Imgs/seta1.png" alt="Próximo" />
-                </S.CustomArrow>
               </S.CarouselContainer>
             ) : (
               instructors.map((tutor) => (
@@ -178,6 +165,7 @@ export default function InfoPage() {
                   key={tutor.id}
                   $area={tutor.id}
                   custom={tutor.id}
+                  variants={tutorVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                 >
@@ -203,7 +191,7 @@ export default function InfoPage() {
 
       <S.TestimonialsSection>
         <motion.div
-          initial={{ opacity: 0}}
+          initial={{ opacity: 0 }}
           animate={isInViewAval ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >

@@ -107,6 +107,19 @@ export const GridStyles = styled.div`
   @media (max-width: 768px) {
     padding: 0 10px; /* Espaço para as setas não colarem na borda da tela */
   }
+
+  .swiper-pagination-bullet {
+    background: #cccccc; // Cor dos pontos inativos
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #133f20; // Cor do ponto ativo (configure como desejar)
+  }
+
+  .swiper-pagination {
+    bottom: -2px; // Ajuste a posição vertical se necessário
+  }
 `;
 
 export const StyleCard = styled.div`

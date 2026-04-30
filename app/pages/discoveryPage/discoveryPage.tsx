@@ -71,9 +71,7 @@ export default function DiscoveryPage() {
         initial={{ opacity: 0, x: -30 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0 }}
         transition={{
-          duration: 0.8,
-          delay: 0.5,
-          ease: "easeOut",
+          duration: 1,
         }}
       >
         <S.MainTitle>Descubra a variedade de estilos</S.MainTitle>
@@ -85,22 +83,19 @@ export default function DiscoveryPage() {
         as={motion.div}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 1.8 }}
+        transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
       >
         {isMobile ? (
           <>
-            <S.CustomArrow ref={(node) => setPrevEl(node)} className="prev">
-              <img src="/Imgs/seta2.png" alt="Anterior" />
-            </S.CustomArrow>
-
             <Swiper
-              loop={true}
+              loop={false}
+              pagination={{ clickable: true }}
+              modules={[Navigation, Pagination]}
               navigation={{ prevEl, nextEl }}
               observer={true}
               observeParents={true}
               slidesPerView={1} // Alterado de "auto" para 1
               spaceBetween={0} // Opcional: 0 para ocupar a tela cheia ou 20 se quiser ver margens
-              modules={[Navigation, Pagination]}
               className="mySwiper"
             >
               {stylesData.map((item, index) => (
@@ -116,9 +111,6 @@ export default function DiscoveryPage() {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <S.CustomArrow ref={(node) => setNextEl(node)} className="next">
-              <img src="/Imgs/seta1.png" alt="Próximo" />
-            </S.CustomArrow>
           </>
         ) : (
           // No Desktop, renderiza apenas o Flexbox comum
