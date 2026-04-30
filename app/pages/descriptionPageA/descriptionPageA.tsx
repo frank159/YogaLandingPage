@@ -1,18 +1,21 @@
 "use client";
-import { useRef } from "react"; // Adicione o useRef
-import { useInView } from "framer-motion"; // Adicione o useInView
+import { useRef } from "react";
+import { useInView, Variants } from "framer-motion"; // Importado Variants
 import * as S from "./descriptionPageAStyled";
 
 export default function DescriptionPageA() {
-  // Criamos uma referência para a seção
-  const cardVariants = {
-    hidden: (custom) => {
-      // Agora verifica se a tela é menor que 1200px
+  type CardCustom = {
+    id: number;
+    origX: number;
+    origY: number;
+  };
+
+  // Tipando explicitamente como Variants para resolver o erro do 'ease'
+  const cardVariants: Variants = {
+    hidden: (custom: CardCustom) => {
       const isAligned =
         typeof window !== "undefined" && window.innerWidth < 1200;
 
-      // Se estiver alinhado, ele vem apenas da esquerda (-50)
-      // Se for desktop largo (>1200), mantém a lógica original
       const startX = isAligned
         ? -50
         : custom.id % 2 === 0
@@ -27,13 +30,12 @@ export default function DescriptionPageA() {
         y: startY,
       };
     },
-    visible: (custom) => {
+    visible: (custom: CardCustom) => {
       const isAligned =
         typeof window !== "undefined" && window.innerWidth < 1200;
 
       return {
         opacity: 1,
-        // Se for menor que 1200px, força x e y para 0 (alinhamento natural do flexbox)
         x: isAligned ? 0 : custom.origX,
         y: isAligned ? 0 : custom.origY,
         transition: {
@@ -44,20 +46,18 @@ export default function DescriptionPageA() {
       };
     },
   };
-  
+
   const refA = useRef(null);
   const isInViewA = useInView(refA, { once: true, amount: 0.2 });
 
-  // 2. Gatilho para a Seção B
   const refB = useRef(null);
   const isInViewB = useInView(refB, { once: true, amount: 0.3 });
+
   return (
     <>
       <S.GlobalStyle />
       <S.MainWrapper>
-        {/* Passamos a ref para a SectionA */}
         <S.SectionA>
-          {/* A LINHA: agora ela reage ao estado 'isInView' da seção pai */}
           <S.VerticalLine
             initial={{ scaleY: 0 }}
             animate={isInViewA ? { scaleY: 1 } : { scaleY: 0 }}
@@ -150,6 +150,7 @@ export default function DescriptionPageA() {
               <p>Aprenda com os melhores.</p>
             </S.InfoCard>
           </S.CardsWrapper>
+
           <S.ContentSideB
             ref={refB}
             initial={{ opacity: 0, x: -30 }}

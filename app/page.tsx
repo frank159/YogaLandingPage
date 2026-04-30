@@ -1,5 +1,4 @@
 import DescriptionPageA from "./pages/descriptionPageA/descriptionPageA";
-import DescriptionPageB from "./pages/descriptionPageB/descriptionPageB";
 import DiscoveryPage from "./pages/discoveryPage/discoveryPage";
 import FinalPage from "./pages/finalPage/FinalPage";
 import InfoPage from "./pages/infoPage/InfoPage";
