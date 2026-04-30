@@ -148,6 +148,19 @@ export const CarouselWrapper = styled.div`
     padding: 0;
     max-width: 340px;
   }
+
+  .swiper-pagination-bullet {
+    background: #cccccc; // Cor dos pontos inativos
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #133f20; // Cor do ponto ativo (configure como desejar)
+  }
+
+  .swiper-pagination {
+    bottom: -2px; // Ajuste a posição vertical se necessário
+  }
 `;
 
 export const TestimonialCard = styled.div`
@@ -222,15 +235,43 @@ export const TextCardA = styled.div`
 export const CarouselContainer = styled.div`
   position: relative;
   width: 100%;
-  display: flex;
-  align-items: center;
+
+  /* Ajustamos o container pai para não travar o tamanho */
+  display: block;
 
   @media (max-width: 768px) {
     max-width: 340px;
     margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .swiper {
+    width: 100%;
+    /* O SEGREDO: Esse padding empurra o card para cima, 
+       deixando o fundo do carrossel vazio para as bolinhas */
+    padding-bottom: 50px !important;
+    overflow: visible !important;
+  }
+
+  .swiper-pagination {
+    /* Agora usamos bottom: 0 ou um valor baixo, pois o 
+       padding-bottom da .swiper já garantiu o espaço livre abaixo do card */
+    bottom: 5px !important;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .swiper-pagination-bullet {
+    background: #cccccc;
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #133f20;
   }
 `;
-
 export const CustomArrow = styled.div`
   position: absolute;
   top: 50%;
@@ -243,11 +284,19 @@ export const CustomArrow = styled.div`
   align-items: center;
   justify-content: center;
 
-  &.prev { left: -10px; }
-  &.next { right: -10px; }
+  &.prev {
+    left: -10px;
+  }
+  &.next {
+    right: -10px;
+  }
 
   @media (max-width: 400px) {
-    &.prev { left: 5px; }
-    &.next { right: 5px; }
+    &.prev {
+      left: 5px;
+    }
+    &.next {
+      right: 5px;
+    }
   }
 `;
