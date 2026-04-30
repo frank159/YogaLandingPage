@@ -113,7 +113,7 @@ export default function InfoPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 1.2, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.3 }}
           >
             <S.MainTitle>Pratique com quem entende</S.MainTitle>
             <S.MainSubtitle>
@@ -126,8 +126,8 @@ export default function InfoPage() {
               <S.CarouselContainer
                 as={motion.div}
                 initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ duration: 1 }}
+                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 1.2, delay: 0.5 }}
               >
                 <Swiper
                   slidesPerView={1}
@@ -194,7 +194,7 @@ export default function InfoPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInViewAval ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 1, delay: 0.5 }}
         >
           <S.MainTitle>O que os alunos dizem:</S.MainTitle>
         </motion.div>
@@ -202,8 +202,8 @@ export default function InfoPage() {
           ref={refAval}
           as={motion.div}
           initial={{ opacity: 0 }}
-          animate={isInViewAval ? { opacity: 1 } : {}}
-          transition={{ duration: 1 }}
+          animate={isInViewAval ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1.2, delay: 0.8 }}
         >
           <S.CustomArrow ref={(node) => setPrevRev(node)} className="prev">
             <img src="/Imgs/seta2.png" alt="Anterior" />
