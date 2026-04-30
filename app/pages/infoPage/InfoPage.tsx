@@ -178,7 +178,6 @@ export default function InfoPage() {
                   key={tutor.id}
                   $area={tutor.id}
                   custom={tutor.id}
-                  variants={tutorVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                 >
