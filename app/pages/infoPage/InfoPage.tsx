@@ -104,6 +104,8 @@ export default function InfoPage() {
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0 }}
           transition={{
             duration: 1,
+            delay: 0.5,
+
             ease: "easeOut",
           }}
         />
@@ -111,7 +113,7 @@ export default function InfoPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 1.2 }}
+            transition={{ duration: 1.2, delay: 0.5 }}
           >
             <S.MainTitle>Pratique com quem entende</S.MainTitle>
             <S.MainSubtitle>
